@@ -1,0 +1,67 @@
+
+.main_bottom, .main_top, .main_left, .main_content {
+    min-width: 320px;
+}
+.main_top {
+    background: url('resources/img/ajaxFramework.svg.xhtml') no-repeat 0% 60% #036FAB;
+    color: white;
+    position: relative;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+    height: 90px;
+}
+
+.main_bottom {
+    background-color: #c2dfef;
+    padding: 0;
+    position: absolute;
+    margin: 10px 0 0 0;
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.main_left {
+    background-color: #ece3a5;
+    float: left;
+    padding: 5px;
+    width: 320px;
+}
+
+.main_right {
+    background-color: #ece3a5;
+    float: right;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    background-color: #dddddd;
+    padding: 5px;
+    position: relative;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 330px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+.main_top a:link, .main_top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+.main_top a:link:hover, .main_top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}

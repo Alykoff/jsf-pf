@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition template="/index2.xhtml">
+        <ui:define name="top">
+            <h:link outcome="welcome_page" value="Welcome Page"/>
+        </ui:define>
+        
+        <ui:define name="title">Пример использования шаблона</ui:define>
+       
+        <ui:define name="left">
+            <h:form>
+                <p:growl autoUpdate="true"/>
+
+                <p:panelMenu style="width:300px">
+                    <p:submenu label="Welcome page"/>
+                    <p:submenu label="Administration">
+                        <p:menuitem value="Users" url="http://www.primefaces.org"/>
+                        <p:menuitem value="Roles" url="http://www.primefaces.org"/>
+                        <p:menuitem value="Permitions" url="http://www.primefaces.org"/>
+                    </p:submenu>
+                    <p:submenu label="References">
+                        <p:menuitem value="Contries" url="http://www.primefaces.org"/>
+                        <p:menuitem value="Currencies" url="http://www.primefaces.org"/>
+                        <p:menuitem value="Segments of Clients" url="http://www.primefaces.org"/>
+                        <p:menuitem value="Latters" url="http://www.primefaces.org"/>
+                        <p:menuitem value="SMS text" url="http://www.primefaces.org"/>
+                        <p:menuitem value="SMS fields" url="http://www.primefaces.org"/>
+                    </p:submenu>
+                </p:panelMenu>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

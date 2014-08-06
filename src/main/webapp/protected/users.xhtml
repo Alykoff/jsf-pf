@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+    <ui:composition template="/layouts/main_layout.xhtml">
+        <ui:define name="top">
+            <h:link outcome="welcome_page" value="Welcome Page"/>
+            <h:form>
+                <h:commandButton value="Выйти" action="#{authenticationBean.doLogout()}"/>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="title">
+            Приватная страница
+        </ui:define>
+
+    </ui:composition>
+</html>
