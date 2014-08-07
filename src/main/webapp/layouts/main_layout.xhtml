@@ -22,11 +22,11 @@
             <div class="main_left">
                 <h:form>
                     <p:growl autoUpdate="true"/>
-
+                    
                     <p:panelMenu style="width:300px">
                         <p:submenu label="Welcome page"/>
                         <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">
-                            <p:menuitem value="Users" url="http://www.primefaces.org"/>
+                            <p:menuitem value="Users" url="/protected/users.xhtml"/>
                             <p:menuitem value="Roles" url="http://www.primefaces.org"/>
                             <p:menuitem value="Permitions" url="http://www.primefaces.org"/>
                             <p:menuitem value="Managers" url="http://www.primefaces.org" rendered="#{secUtil.isUserInRole('ROLE_MANAGER')}"/>
