@@ -20,17 +20,19 @@ public class Users implements Serializable {
     private String secondName;
     private String fromCity;
     private String livingCity;
+    private Integer powerValue;
     private Boolean isActive;
 
     public Users() {
     }
 
-    public Users(Long id, String firstName, String secondName, String fromCity, String livingCity, Boolean isActive) {
+    public Users(Long id, String firstName, String secondName, String fromCity, String livingCity, Integer powerValue, Boolean isActive) {
         this.id = id;
         this.firstName = firstName;
         this.secondName = secondName;
         this.fromCity = fromCity;
         this.livingCity = livingCity;
+        this.powerValue = powerValue;
         this.isActive = isActive;
     }
 
@@ -82,6 +84,14 @@ public class Users implements Serializable {
         this.isActive = isActive;
     }
 
+    public Integer getPowerValue() {
+        return powerValue;
+    }
+
+    public void setPowerValue(Integer powerValue) {
+        this.powerValue = powerValue;
+    }
+
     @Override
     public int hashCode() {
         int hash = id == null ? 12403 : id.intValue();
@@ -120,12 +130,7 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "Users{" + "firstName=" + firstName
-                + ", secondName=" + secondName
-                + ", id=" + id 
-                + ", fromCity=" + fromCity 
-                + ", livingCity=" + livingCity 
-                + ", isActive=" + isActive + '}';
+        return "Users{" + "id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", fromCity=" + fromCity + ", livingCity=" + livingCity + ", powerValue=" + powerValue + ", isActive=" + isActive + '}';
     }
 
 }

@@ -33,3 +33,11 @@ a:link:hover, a:visited:hover  {
   font-weight : bold;
   text-decoration : underline;
 }
+
+.width_150px {
+    width: 150px;
+}
+
+.width_300px {
+    width: 300px;
+}

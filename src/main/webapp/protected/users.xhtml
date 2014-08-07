@@ -26,7 +26,7 @@
                     <p:column headerText="Secondname">
                         <h:outputText value="#{user.secondName}" />
                     </p:column>
-                    
+
                     <p:column headerText="Living city">
                         <h:outputText value="#{user.livingCity}" />
                     </p:column>
@@ -44,26 +44,46 @@
                 <!-- Модальное окно редактирования пользователя -->
                 <p:dialog id="dialog" header="Редактирование пользователя" showEffect="fade" widgetVar="userDialog" modal="true" resizable="false">
                     <p:outputPanel id="userPanel">
-                        <p:panelGrid  columns="2" columnClasses="label,value" rendered="#{not empty usersController.selectedUser}">
-                            <h:outputLabel for="id" value="id: " />
-                            <h:outputText id="id" value="#{usersController.selectedUser.id}" style="font-weight:bold" />
+<!--                        <p:messages autoUpdate="true"/>-->
+                        <h:panelGrid id="grid" 
+                                width="600" 
+                                columns="3" 
+                                cellpadding="5" 
+                                columnClasses="width_150px,width_150px,width_300px" 
+                                rendered="#{not empty usersController.selectedUser}">
                             
+                            <h:outputLabel for="id" value="id: " />
+                            <h:outputText id="id" value="#{usersController.selectedUser.id}" />
+                            <p:message for="id" />
+
                             <h:outputLabel for="firstname" value="first name: " />
                             <h:inputText id="firstname" value="#{usersController.selectedUser.firstName}" />
-                            
+                            <p:message for="firstname" />
+
                             <h:outputLabel for="secondname" value="second name: " />
                             <h:inputText id="secondname" value="#{usersController.selectedUser.secondName}" />
-                            
+                            <p:message for="secondname" />
+
                             <h:outputLabel for="livingcity" value="living city: " />
                             <h:inputText id="livingcity" value="#{usersController.selectedUser.livingCity}" />
-                            
+                            <p:message for="livingcity" />
+
                             <h:outputLabel for="fromcity" value="from city: " />
                             <h:inputText id="fromcity" value="#{usersController.selectedUser.fromCity}" />
-                            
+                            <p:message for="fromcity" />
+
+                            <h:outputLabel for="powervalue" value="power value: " />
+                            <p:inputText id="powervalue" value="#{usersController.selectedUser.powerValue}" required="true" validatorMessage="Неверное значение силы" >
+                                <f:validateLongRange minimum="1" maximum="99" />
+                            </p:inputText>
+                            <p:message for="powervalue" />
+
                             <h:outputLabel for="isactive" value="is active: " />
                             <h:selectBooleanCheckbox id="isactive" value="#{usersController.selectedUser.isActive}" />
-                        </p:panelGrid>
-                        <p:button value="Сохранить" />
+                            <p:message for="isactive" />
+                            
+                        </h:panelGrid>
+                        <p:commandButton value="Сохранить" update=":form:grid" process="powervalue" validateClient="true" />
                     </p:outputPanel>
                 </p:dialog>
             </h:form>

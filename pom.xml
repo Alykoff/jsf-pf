@@ -42,12 +42,19 @@
             <artifactId>primefaces</artifactId>
             <version>5.0</version>
         </dependency>
-        
+        <!-- Local theme 
         <dependency>  
             <groupId>org.primefaces.themes</groupId>  
             <artifactId>all-themes</artifactId>  
             <version>1.0.10</version>  
-        </dependency> 
+        </dependency> -->
+
+        
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>raiff-theme</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>com.sun.faces</groupId>

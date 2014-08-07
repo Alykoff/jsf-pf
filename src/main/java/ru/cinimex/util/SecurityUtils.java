@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class SecurityUtils {
     public boolean isUserInRole(String role) {
         if (role == null) return false;
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        System.out.println("isUserInRole");
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
         req.getUserPrincipal().getName();
