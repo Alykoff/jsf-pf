@@ -42,12 +42,12 @@
             <artifactId>primefaces</artifactId>
             <version>5.0</version>
         </dependency>
-        <!-- Local theme 
+        <!-- Local theme -->
         <dependency>  
             <groupId>org.primefaces.themes</groupId>  
             <artifactId>all-themes</artifactId>  
             <version>1.0.10</version>  
-        </dependency> -->
+        </dependency> 
 
         
         <dependency>

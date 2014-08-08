@@ -6,10 +6,10 @@
 
     <ui:composition template="/layouts/main_layout.xhtml">
         <ui:define name="top">
-            <h:link outcome="welcome_page" value="Welcome Page"/>
+<!--            <h:link outcome="welcome_page" value="Welcome Page"/>
             <h:form>
                 <h:commandButton value="Выйти" action="#{authenticationBean.doLogout()}"/>
-            </h:form>
+            </h:form>-->
         </ui:define>
 
         <ui:define name="title">
@@ -36,22 +36,31 @@
                     </p:column>
 
                     <p:column style="width:24px">
-                        <p:commandLink update=":form:userPanel" oncomplete="PF('userDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search">
+                        <p:commandLink update=":form:userPanel" 
+                                       oncomplete="PF('userDialog').show()" 
+                                       title="View Detail" 
+                                       styleClass="ui-icon ui-icon-search">
                             <f:setPropertyActionListener value="#{user}" target="#{usersController.selectedUser}" />
                         </p:commandLink>
                     </p:column>
                 </p:dataTable>
                 <!-- Модальное окно редактирования пользователя -->
-                <p:dialog id="dialog" header="Редактирование пользователя" showEffect="fade" widgetVar="userDialog" modal="true" resizable="false">
+                <p:dialog id="dialog" 
+                          header="Редактирование пользователя" 
+                          showEffect="fade" 
+                          widgetVar="userDialog" 
+                          modal="true" 
+                          resizable="false"
+                          closable="false">
                     <p:outputPanel id="userPanel">
-<!--                        <p:messages autoUpdate="true"/>-->
+                        <!--                        <p:messages autoUpdate="true"/>-->
                         <h:panelGrid id="grid" 
-                                width="600" 
-                                columns="3" 
-                                cellpadding="5" 
-                                columnClasses="width_150px,width_150px,width_300px" 
-                                rendered="#{not empty usersController.selectedUser}">
-                            
+                                     width="600" 
+                                     columns="3" 
+                                     cellpadding="5" 
+                                     columnClasses="width_150px,width_150px,width_350px" 
+                                     rendered="#{not empty usersController.selectedUser}">
+
                             <h:outputLabel for="id" value="id: " />
                             <h:outputText id="id" value="#{usersController.selectedUser.id}" />
                             <p:message for="id" />
@@ -81,9 +90,26 @@
                             <h:outputLabel for="isactive" value="is active: " />
                             <h:selectBooleanCheckbox id="isactive" value="#{usersController.selectedUser.isActive}" />
                             <p:message for="isactive" />
-                            
+
                         </h:panelGrid>
-                        <p:commandButton value="Сохранить" update=":form:grid" process="powervalue" validateClient="true" />
+                        <p:commandButton value="Выход" 
+                                onclick="PF('userDialog').hide();console.log('hello');" 
+                                oncomplete="PF('userDialog').hide();console.log('hello');"
+                                update=":form:dialog" 
+                                validateClient="true"
+                                process="@this" 
+                                immediate="true">
+                            <p:resetInput target="form:dialog"/>
+                        </p:commandButton>
+                        <p:commandButton value="Сохранить" 
+                                         actionListener="#{usersController.saveUser()}"
+                                oncomplete="console.log('args: ' + JSON.stringify(args));if(false) {console.log('#{!facesContext.validationFailed}');PF('userDialog').hide();};"
+                                         onclick="console.log('hello2');" 
+                                         process="powervalue"
+                                         update="grid"
+                                >
+                        </p:commandButton>
+                        <!-- actionListener="#{libraryBean.incrementCounter}"-->
                     </p:outputPanel>
                 </p:dialog>
             </h:form>

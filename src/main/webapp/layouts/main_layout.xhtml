@@ -14,15 +14,20 @@
         </title>
     </h:head>
     <h:body>
-
-        <div class="main_top">
-            <ui:insert name="top">Top3</ui:insert>
-        </div>
-        <div>
+        <div class="main_container">
+            <div class="main_top">
+                <div class="main_top_welcome" />
+                <div class="main_top_logo">
+                    <h2 class="pdg-rght25 ln-hgth3-5 txt-algn-rght">
+                        Capstone Credit Cards
+                    </h2>
+                </div>
+                <ui:insert name="top" rendered="false">Top3</ui:insert>
+            </div>
             <div class="main_left">
                 <h:form>
                     <p:growl autoUpdate="true"/>
-                    
+
                     <p:panelMenu style="width:300px">
                         <p:submenu label="Welcome page"/>
                         <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">
@@ -45,10 +50,9 @@
             <div class="main_content left_content">
                 <ui:insert name="content">Content</ui:insert>
             </div>
+            <div class="main_bottom">
+                <ui:insert name="bottom">Версия 0.0.1 Разработано компанией Cinimex-Informatica (c) 2014</ui:insert>
+            </div>
         </div>
-        <div class="main_bottom">
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </div>
-
     </h:body>
 </html>

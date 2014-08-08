@@ -31,6 +31,10 @@ public class UsersController implements Serializable {
         return usersManager.getAll();
     }
 
+    public void saveUser() {
+        
+    }
+    
     public Users getSelectedUser() {
         System.out.println("get selectedUser: " + selectedUser);
         return selectedUser;

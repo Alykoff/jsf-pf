@@ -3,65 +3,93 @@
     min-width: 320px;
 }
 .main_top {
-    background: url('resources/img/ajaxFramework.svg.xhtml') no-repeat 0% 60% #036FAB;
-    color: white;
     position: relative;
-    padding: 5px;
-    margin: 0px 0px 10px 0px;
-    height: 90px;
+    padding: 0;
+    margin: 5px;
+    height: 75px;
+    display: block;
+    border: 1px rgba(0,0,0,0.3) solid;
 }
 
 .main_bottom {
-    background-color: #c2dfef;
-    padding: 0;
-    position: absolute;
-    margin: 10px 0 0 0;
+    background-color: rgb(234, 234, 234);
+    padding: 0px;
+    margin: 5px;
     height: 80px;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    padding: 5px;
+    border: 1px rgba(0,0,0,0.3) solid;
 }
 
 .main_left {
-    background-color: #ece3a5;
+    _background-color: #ece3a5;
     float: left;
     padding: 5px;
     width: 320px;
 }
 
 .main_right {
-    background-color: #ece3a5;
+    _background-color: #ece3a5;
     float: right;
     padding: 5px;
     width: 150px;
 }
 
 .center_content {
-    background-color: #dddddd;
+    background-color: rgb(234, 234, 234);
     padding: 5px;
     position: relative;
 }
 
 .left_content {
-    background-color: #dddddd;
+    _background-color: #dddddd;
     padding: 5px;
     margin-left: 330px;
 }
 
 .right_content {
-    background-color: #dddddd;
+    _background-color: #dddddd;
     padding: 5px;
     margin: 0px 170px 0px 170px;
 }
 
 .main_top a:link, .main_top a:visited {
-  color: white;
-  font-weight : bold;
-  text-decoration: none;
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 .main_top a:link:hover, .main_top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+
+.main_container {
+    width: 94%;
+    margin: 0 auto;
+    font-size: 10px;
+    font-family: Verdana;
+    background-color: rgb(255, 255, 255);
+}
+
+.main_top_welcome {
+    background: url('../img/logo_rus.gif.xhtml') no-repeat;
+    width: 205px;
+    height: 45px;
+    display: inline-block;
+    margin: 14px;
+    float: left;
+}
+
+.main_top_logo {
+    background: url('../img/logo-background.gif.xhtml') no-repeat;
+    height: 100%;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    float: right;
+    width: 400px;
 }
