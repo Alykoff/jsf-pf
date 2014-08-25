@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import javax.inject.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import ru.cinimex.model.Users;
 
 /**
@@ -12,8 +16,9 @@ import ru.cinimex.model.Users;
  */
 @Singleton
 public class UsersManagerImpl implements Serializable {
-    public List<Users> getAll() {
-        Users[] users = new Users[] {
+    private static final Users[] users;
+    static {
+        Users[] usersLocal = new Users[]{
             new Users(1L, "name", "serch", "mosckov", "piter", 10, false),
             new Users(2L, "name2", "serch", "mosckov", "piter", 10, false),
             new Users(3L, "name3", "serch", "mosckov", "piter", 10, false),
@@ -30,8 +35,25 @@ public class UsersManagerImpl implements Serializable {
             new Users(15L, "name3", "serch", "mosckov", "piter", 10, false),
             new Users(16L, "name", "serch", "mosckov", "piter", 10, false)
         };
-        List<Users> list = Arrays.asList(users);
-        return list;
+        users = usersLocal;
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("monogoNoDB");
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin();
+//        for (Users user : usersLocal) {
+//            em.persist(null);
+//        }
+//        tx.commit();
+//        em.close();
+//        emf.close();
     }
-    
+
+    public List<Users> getAll() {
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("monogoNoDB");
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction tx = em.getTransaction();
+//        return em.createNamedQuery("findAll", Users.class).getResultList();
+        return Arrays.asList(users);
+    }
+
 }

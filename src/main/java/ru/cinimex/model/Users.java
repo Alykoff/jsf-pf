@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -12,6 +14,9 @@ import javax.validation.constraints.NotNull;
  * @author galykov
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "findAll", query = "select u from Users u")
+})
 public class Users implements Serializable {
     @Id @GeneratedValue
     private Long id;
@@ -130,7 +135,13 @@ public class Users implements Serializable {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + id + ", firstName=" + firstName + ", secondName=" + secondName + ", fromCity=" + fromCity + ", livingCity=" + livingCity + ", powerValue=" + powerValue + ", isActive=" + isActive + '}';
+        return "Users{" + "id=" + id 
+                + ", firstName=" + firstName 
+                + ", secondName=" + secondName 
+                + ", fromCity=" + fromCity 
+                + ", livingCity=" + livingCity 
+                + ", powerValue=" + powerValue 
+                + ", isActive=" + isActive + '}';
     }
 
 }

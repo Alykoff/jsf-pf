@@ -3,12 +3,21 @@
     min-width: 320px;
 }
 .main_top {
+    border: 1px rgba(0,0,0,0.3) solid;
+    display: block;
+    height: 75px;
+    margin: 5px;
+    min-width: 700px;
     position: relative;
     padding: 0;
-    margin: 5px;
-    height: 75px;
-    display: block;
+}
+
+.main_context_info_top {
+    background-color: rgb(255, 252, 190);
     border: 1px rgba(0,0,0,0.3) solid;
+    padding: 0;
+    margin: 5px;
+    text-align: right;
 }
 
 .main_bottom {

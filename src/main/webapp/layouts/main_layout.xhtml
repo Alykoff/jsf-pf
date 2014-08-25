@@ -7,6 +7,8 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="#{request.contextPath}/resources/img/favicon.ico" type="image/x-icon" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>
@@ -22,8 +24,20 @@
                         Capstone Credit Cards
                     </h2>
                 </div>
-                <ui:insert name="top" rendered="false">Top3</ui:insert>
+                <ui:insert name="top" rendered="false"></ui:insert>
             </div>
+                <div class="main_context_info_top">
+                    <ui:insert name="context_top" rendered="false">
+                        <h:form>
+                            <!--h:button outcome="welcome_page" value="Welcome Page"/-->
+                            <h:outputLabel value="Текущая дата: " />
+                            <h:outputLabel value="#{dateUtils.currentSimpleFormatDate()}"/>
+                            <h:outputLabel class="mrgn-rght-15px mrgn-lft-15px" value="#{secUtil.userName}" />
+                            <h:button class="rf-button mrgn-rght-15px" value="О программе" />
+                            <h:commandButton class="rf-button mrgn-rght-15px" value="Выйти" action="#{authenticationBean.doLogout()}"/>
+                        </h:form>
+                    </ui:insert>
+                </div>
             <div class="main_left">
                 <h:form>
                     <p:growl autoUpdate="true"/>

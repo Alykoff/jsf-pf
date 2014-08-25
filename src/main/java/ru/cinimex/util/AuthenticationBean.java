@@ -1,6 +1,7 @@
 package ru.cinimex.util;
 
 import java.io.IOException;
+import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -19,7 +20,7 @@ import org.springframework.security.core.userdetails.User;
  */
 @Named("authenticationBean")
 @RequestScoped
-public class AuthenticationBean {
+public class AuthenticationBean implements Serializable {
     public String doLogin() throws IOException, ServletException {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
         RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher("/j_spring_security_check");
