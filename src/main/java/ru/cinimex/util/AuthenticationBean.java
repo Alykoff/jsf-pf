@@ -18,8 +18,8 @@ import org.springframework.security.core.userdetails.User;
  *
  * @author galykov
  */
-@Named("authenticationBean")
 @RequestScoped
+@Named("authenticationBean")
 public class AuthenticationBean implements Serializable {
     public String doLogin() throws IOException, ServletException {
         ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();

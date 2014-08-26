@@ -11,6 +11,7 @@
     <h:body>
         <h:messages />
         <h:form id="editorForm">
+            <p:growl id="growl" showDetail="true" sticky="true" />  
             <p:editor value="#{editor.value}" />
             <h:button rendered="true" outcome="index3.xhtml" value="A index3.xhtml link"/>
             <h:inputHidden value="42"/>
@@ -18,7 +19,7 @@
             <h:inputSecret maxlength="2" id="isbn"/>
             <h:message for="isbn" />
             <ui:debug />
-            
+
             <h:panelGrid columns="3" border="1">
                 <f:facet name="header">
                     <h:outputText value="Заголовок"/>
@@ -33,9 +34,9 @@
                     <h:outputText value="Footer"/>
                 </f:facet>
             </h:panelGrid>
+            <br />
+            <p:commandButton value="Logout" id="login" update="growl" action="#{authenticationBean.doLogout()}" styleClass="ui-priority-primary" />
         </h:form>
-        <br />
-        <p:commandButton value="Logout" id="login" update="growl" action="#{authenticationBean.doLogout()}" styleClass="ui-priority-primary" />
     </h:body>
 </html>
 

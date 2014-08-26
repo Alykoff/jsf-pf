@@ -112,6 +112,25 @@
         </dependency>
         
         <dependency>
+            <groupId>org.jboss.weld.servlet</groupId>
+            <artifactId>weld-servlet</artifactId>
+            <version>2.2.4.Final</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core</artifactId>
+            <version>2.2.4.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-spi</artifactId>
+            <version>2.2.SP3</version>
+        </dependency>
+
+        
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.1.1</version>
@@ -207,8 +226,48 @@
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>C:\developer\apache-tomcat-6.0.32</directory>
+                            <includes>
+                                <include>webapps/${project.build.finalName}/**</include>
+                                <include>webapps/${project.build.finalName}</include>
+                                <include>work/Catalina/localhost/${project.build.finalName}/**</include>
+                                <include>work/Catalina/localhost/${project.build.finalName}</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            
+            <!--            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <outputDirectory>C:\developer\apache-tomcat-6.0.32\webapps</outputDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>${basedir}/src/main/config/${environment}</directory>
+                            <filtering>true</filtering>
+                            <targetPath>.</targetPath>
+                            <includes>
+                                <include>**/*.*</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>-->
+            
         </plugins>
     </build>
 </project>

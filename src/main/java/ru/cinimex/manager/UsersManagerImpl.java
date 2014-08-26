@@ -3,20 +3,16 @@ package ru.cinimex.manager;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
-import javax.inject.Singleton;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.enterprise.context.ApplicationScoped;
 import ru.cinimex.model.Users;
 
 /**
  *
  * @author galykov
  */
-@Singleton
+@ApplicationScoped
 public class UsersManagerImpl implements Serializable {
-    private static final Users[] users;
+    private transient static final Users[] users;
     static {
         Users[] usersLocal = new Users[]{
             new Users(1L, "name", "serch", "mosckov", "piter", 10, false),

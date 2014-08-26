@@ -3,7 +3,7 @@ package ru.cinimex.controller;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import ru.cinimex.manager.UsersManagerImpl;
@@ -14,8 +14,8 @@ import ru.cinimex.model.Users;
  * @author galykov
  */
 
+@RequestScoped
 @Named("usersController")
-@ViewScoped
 public class UsersController implements Serializable {  
     @Inject
     protected UsersManagerImpl usersManager;

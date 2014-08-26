@@ -12,61 +12,140 @@
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <title>
-            <ui:insert name="title">TITLE</ui:insert>
+            <ui:insert name="title">Title</ui:insert>
         </title>
     </h:head>
     <h:body>
         <div class="main_container">
             <div class="main_top">
-                <div class="main_top_welcome" />
+                <a href="#{request.contextPath}/protected/index.xhtml">
+                    <div class="main_top_welcome" />
+                </a>
                 <div class="main_top_logo">
-                    <h2 class="pdg-rght25 ln-hgth3-5 txt-algn-rght">
+                    <h3 class="pdg-rght25 ln-hgth3 txt-algn-rght">
                         Capstone Credit Cards
-                    </h2>
+                    </h3>
                 </div>
                 <ui:insert name="top" rendered="false"></ui:insert>
             </div>
-                <div class="main_context_info_top">
-                    <ui:insert name="context_top" rendered="false">
-                        <h:form>
-                            <!--h:button outcome="welcome_page" value="Welcome Page"/-->
+                    
+            <div class="main_context_info_top">
+                <ui:insert name="context_top" rendered="false">
+                    <h:form>
+                        <!--h:button outcome="welcome_page" value="Welcome Page"/-->
+                        <div class="txt-algn-rght">
                             <h:outputLabel value="Текущая дата: " />
                             <h:outputLabel value="#{dateUtils.currentSimpleFormatDate()}"/>
-                            <h:outputLabel class="mrgn-rght-15px mrgn-lft-15px" value="#{secUtil.userName}" />
-                            <h:button class="rf-button mrgn-rght-15px" value="О программе" />
-                            <h:commandButton class="rf-button mrgn-rght-15px" value="Выйти" action="#{authenticationBean.doLogout()}"/>
-                        </h:form>
-                    </ui:insert>
+                            <h:outputLabel styleClass="mrgn-rght-15px mrgn-lft-15px" value="#{secUtil.userName}" />
+                            <p:commandButton styleClass="rf-button-min mrgn-rght-15px"
+                                             oncomplete="PF('aboutAppDialog').show();" 
+                                             value="О программе" />
+                            <h:commandButton styleClass="rf-button-min mrgn-rght-15px" value="Выйти" action="#{authenticationBean.doLogout()}"/>
+                        </div>
+                    </h:form>
+                </ui:insert>
+            </div>
+            
+            <div class="main_middle">
+                <!-- Меню навигации -->
+                <div class="main_middle_left">
+                    <h:form id="main_left_form">
+                        <p:growl autoUpdate="true"/>
+                        <p:panelMenu style="width:300px">
+                            <p:submenu label="Welcome page">
+                                <p:menuitem value="Main" 
+                                            class="#{view.viewId == '/protected/index.xhtml' ? 'menu_active_item' : ''}" 
+                                            url="/protected/index.xhtml"/>
+                            </p:submenu>
+                            <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">
+                                <p:menuitem value="Users" 
+                                            class="#{view.viewId == '/protected/users.xhtml' ? 'menu_active_item' : ''}" 
+                                            url="/protected/users.xhtml"/>
+                                <p:menuitem value="Roles" 
+                                            class="#{view.viewId == '/protected/roles.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/roles.xhtml"/>
+                                <p:menuitem value="Permitions" 
+                                            class="#{view.viewId == '/protected/permitions.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/permitions.xhtml"/>
+                                <p:menuitem value="Managers" 
+                                            class="#{view.viewId == '/protected/managers.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/managers.xhtml"
+                                            rendered="#{secUtil.isUserInRole('ROLE_MANAGER')}"/>
+                            </p:submenu>
+                            <p:submenu label="References">
+                                <p:menuitem value="Contries" 
+                                            class="#{view.viewId == '/protected/references/contries.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/references/contries.xhtml"/>
+                                <p:menuitem value="Currencies" 
+                                            class="#{view.viewId == '/protected/references/currencies.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/references/currencies.xhtml"/>
+                                <p:menuitem value="Segments of Clients" 
+                                            class="#{view.viewId == '/protected/references/segments_of_clients.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/references/segments_of_clients.xhtml"/>
+                                <p:menuitem value="Latters"
+                                            class="#{view.viewId == '/protected/references/latters.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/references/latters.xhtml"/>
+                                <p:menuitem value="SMS text" 
+                                            class="#{view.viewId == '/protected/references/sms_text.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/references/sms_text.xhtml"/>
+                                <p:menuitem value="SMS fields" 
+                                            class="#{view.viewId == '/protected/references/sms_fields.xhtml' ? 'menu_active_item' : ''}"
+                                            url="/protected/references/sms_fields.xhtml"/>
+                            </p:submenu>
+                        </p:panelMenu>
+                    </h:form>
                 </div>
-            <div class="main_left">
-                <h:form>
-                    <p:growl autoUpdate="true"/>
 
-                    <p:panelMenu style="width:300px">
-                        <p:submenu label="Welcome page"/>
-                        <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">
-                            <p:menuitem value="Users" url="/protected/users.xhtml"/>
-                            <p:menuitem value="Roles" url="http://www.primefaces.org"/>
-                            <p:menuitem value="Permitions" url="http://www.primefaces.org"/>
-                            <p:menuitem value="Managers" url="http://www.primefaces.org" rendered="#{secUtil.isUserInRole('ROLE_MANAGER')}"/>
-                        </p:submenu>
-                        <p:submenu label="References">
-                            <p:menuitem value="Contries" url="http://www.primefaces.org"/>
-                            <p:menuitem value="Currencies" url="http://www.primefaces.org"/>
-                            <p:menuitem value="Segments of Clients" url="http://www.primefaces.org"/>
-                            <p:menuitem value="Latters" url="http://www.primefaces.org"/>
-                            <p:menuitem value="SMS text" url="http://www.primefaces.org"/>
-                            <p:menuitem value="SMS fields" url="http://www.primefaces.org"/>
-                        </p:submenu>
-                    </p:panelMenu>
-                </h:form>
+                <div class="main_content left_content">
+                    <ui:insert name="content">Content</ui:insert>
+                </div>
+                
             </div>
-            <div class="main_content left_content">
-                <ui:insert name="content">Content</ui:insert>
-            </div>
+                    
             <div class="main_bottom">
                 <ui:insert name="bottom">Версия 0.0.1 Разработано компанией Cinimex-Informatica (c) 2014</ui:insert>
             </div>
+        </div>
+        
+        <!-- Модальное окно "О программе" -->
+        <div>
+            <h:form id="topForm">
+                <p:dialog id="dialog" 
+                          class="txt-algn-lft"
+                          header="Редактирование пользователя" 
+                          showEffect="fade" 
+                          widgetVar="aboutAppDialog" 
+                          modal="true" 
+                          resizable="false"
+                          closable="true">
+                    <p:outputPanel id="aboutPanel">
+                        <h:panelGrid id="grid" 
+                                     width="600" 
+                                     columns="2" 
+                                     cellpadding="5" 
+                                     columnClasses="width_150px,width_350px">
+
+                            <h:outputLabel for="url" value="URL на приложение" />
+                            <h:outputText id="url" value="#{systemInfoUtils.rootUrl}" />
+
+                            <h:outputLabel for="vapp" value="Версия приложения" />
+                            <h:outputText id="vapp" value="#{systemInfoUtils.versionApp}" />
+
+                            <h:outputLabel for="vjava" value="Версия JVM" />
+                            <h:outputText id="vjava" value="#{systemInfoUtils.enviromentInfo}" />
+                        </h:panelGrid>
+
+                        <p:commandButton styleClass="rf-button mrgn-tp-15px mrgn-bttm-15px"
+                                         value="Закрыть" 
+                                         onclick="PF('aboutAppDialog').hide();"
+                                         validateClient="false"
+                                         process="@this" 
+                                         immediate="true"/>
+
+                    </p:outputPanel>
+                </p:dialog>
+            </h:form>
+            
         </div>
     </h:body>
 </html>

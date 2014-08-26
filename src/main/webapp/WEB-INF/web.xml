@@ -15,11 +15,11 @@
             <param-name>primefaces.THEME</param-name>  
             <param-value>raiff</param-value>  
     </context-param-->
-<!--    <context-param>
+    <context-param>
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
-    <context-param>
+  <!--<context-param>
         <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
         <param-value>true</param-value>
     </context-param>-->
@@ -80,6 +80,9 @@
 <!--    <listener>
         <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
     </listener>-->
+    <listener>
+        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+    </listener>
     <!-- ===================EE SECURITY==================== 
     <security-constraint>
         <web-resource-collection>

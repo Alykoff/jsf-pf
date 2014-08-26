@@ -46,7 +46,6 @@
                           resizable="false"
                           closable="false">
                     <p:outputPanel id="userPanel">
-                        <!--                        <p:messages autoUpdate="true"/>-->
                         <h:panelGrid id="grid" 
                                      width="600" 
                                      columns="3" 
@@ -59,19 +58,19 @@
                             <p:message for="id" />
 
                             <h:outputLabel for="firstname" value="first name: " />
-                            <h:inputText id="firstname" value="#{usersController.selectedUser.firstName}" />
+                            <p:inputText id="firstname" value="#{usersController.selectedUser.firstName}" />
                             <p:message for="firstname" />
 
                             <h:outputLabel for="secondname" value="second name: " />
-                            <h:inputText id="secondname" value="#{usersController.selectedUser.secondName}" />
+                            <p:inputText id="secondname" value="#{usersController.selectedUser.secondName}" />
                             <p:message for="secondname" />
 
                             <h:outputLabel for="livingcity" value="living city: " />
-                            <h:inputText id="livingcity" value="#{usersController.selectedUser.livingCity}" />
+                            <p:inputText id="livingcity" value="#{usersController.selectedUser.livingCity}" />
                             <p:message for="livingcity" />
 
                             <h:outputLabel for="fromcity" value="from city: " />
-                            <h:inputText id="fromcity" value="#{usersController.selectedUser.fromCity}" />
+                            <p:inputText id="fromcity" value="#{usersController.selectedUser.fromCity}" />
                             <p:message for="fromcity" />
 
                             <h:outputLabel for="powervalue" value="power value: " />
@@ -81,28 +80,32 @@
                             <p:message for="powervalue" />
 
                             <h:outputLabel for="isactive" value="is active: " />
-                            <h:selectBooleanCheckbox id="isactive" value="#{usersController.selectedUser.isActive}" />
+                            <p:selectBooleanCheckbox id="isactive" value="#{usersController.selectedUser.isActive}" />
                             <p:message for="isactive" />
 
                         </h:panelGrid>
-                        <p:commandButton value="Выход" 
-                                onclick="PF('userDialog').hide();console.log('hello');" 
-                                oncomplete="PF('userDialog').hide();console.log('hello');"
-                                update=":form:dialog" 
-                                validateClient="true"
-                                process="@this" 
-                                immediate="true">
-                            <p:resetInput target="form:dialog"/>
-                        </p:commandButton>
-                        <p:commandButton value="Сохранить" 
-                                         actionListener="#{usersController.saveUser()}"
-                                oncomplete="console.log('args: ' + JSON.stringify(args));if(false) {console.log('#{!facesContext.validationFailed}');PF('userDialog').hide();};"
-                                         onclick="console.log('hello2');" 
-                                         process="powervalue"
-                                         update="grid"
-                                >
-                        </p:commandButton>
-                        <!-- actionListener="#{libraryBean.incrementCounter}"-->
+                        <div class="mrgn-bttm-15px mrgn-tp-15px">
+                            <p:commandButton value="Выход" 
+                                             class="rf-button mrgn-rght-15px"
+                                             onclick="PF('userDialog').hide();
+                                                 console.log('hello');" 
+                                             oncomplete="PF('userDialog').hide();console.log('hello');"
+                                             update=":form:dialog" 
+                                             validateClient="true"
+                                             process="@this" 
+                                             immediate="true">
+                                <p:resetInput target="form:dialog"/>
+                            </p:commandButton>
+                            <p:commandButton value="Сохранить" 
+                                             class="rf-button"
+                                             actionListener="#{usersController.saveUser()}"
+                                             oncomplete="console.log('args: ' + JSON.stringify(args));if(false) {console.log('#{!facesContext.validationFailed}');PF('userDialog').hide();};"
+                                             onclick="console.log('hello2');" 
+                                             process="powervalue"
+                                             update="grid"
+                                             >
+                            </p:commandButton>
+                        </div>
                     </p:outputPanel>
                 </p:dialog>
             </h:form>
