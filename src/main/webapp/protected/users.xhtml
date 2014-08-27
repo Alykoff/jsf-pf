@@ -86,9 +86,8 @@
                         </h:panelGrid>
                         <div class="mrgn-bttm-15px mrgn-tp-15px">
                             <p:commandButton value="Выход" 
-                                             class="rf-button mrgn-rght-15px"
-                                             onclick="PF('userDialog').hide();
-                                                 console.log('hello');" 
+                                             styleClass="rf-button mrgn-rght-15px"
+                                             onclick="PF('userDialog').hide(); console.log('hello');" 
                                              oncomplete="PF('userDialog').hide();console.log('hello');"
                                              update=":form:dialog" 
                                              validateClient="true"
@@ -97,14 +96,16 @@
                                 <p:resetInput target="form:dialog"/>
                             </p:commandButton>
                             <p:commandButton value="Сохранить" 
-                                             class="rf-button"
+                                             styleClass="rf-button"
+                                             validateClient="true"
                                              actionListener="#{usersController.saveUser()}"
-                                             oncomplete="console.log('args: ' + JSON.stringify(args));if(false) {console.log('#{!facesContext.validationFailed}');PF('userDialog').hide();};"
-                                             onclick="console.log('hello2');" 
+                                             onsuccess="PF('userDialog').hide();"
                                              process="powervalue"
-                                             update="grid"
-                                             >
+                                             update="grid">
                             </p:commandButton>
+<!--                            oncomplete="if(false) {/*console.log('#{!facesContext.validationFailed}');PF('userDialog').hide();*/};"
+                                             onclick="console.log('hello2');"-->
+                                             
                         </div>
                     </p:outputPanel>
                 </p:dialog>

@@ -54,42 +54,42 @@
                         <p:panelMenu style="width:300px">
                             <p:submenu label="Welcome page">
                                 <p:menuitem value="Main" 
-                                            class="#{view.viewId == '/protected/index.xhtml' ? 'menu_active_item' : ''}" 
+                                            styleClass="#{view.viewId == '/protected/index.xhtml' ? 'menu_active_item' : ''}" 
                                             url="/protected/index.xhtml"/>
                             </p:submenu>
                             <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">
                                 <p:menuitem value="Users" 
-                                            class="#{view.viewId == '/protected/users.xhtml' ? 'menu_active_item' : ''}" 
+                                            styleClass="#{view.viewId == '/protected/users.xhtml' ? 'menu_active_item' : ''}" 
                                             url="/protected/users.xhtml"/>
                                 <p:menuitem value="Roles" 
-                                            class="#{view.viewId == '/protected/roles.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/roles.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/roles.xhtml"/>
                                 <p:menuitem value="Permitions" 
-                                            class="#{view.viewId == '/protected/permitions.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/permitions.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/permitions.xhtml"/>
                                 <p:menuitem value="Managers" 
-                                            class="#{view.viewId == '/protected/managers.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/managers.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/managers.xhtml"
                                             rendered="#{secUtil.isUserInRole('ROLE_MANAGER')}"/>
                             </p:submenu>
                             <p:submenu label="References">
                                 <p:menuitem value="Contries" 
-                                            class="#{view.viewId == '/protected/references/contries.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/references/contries.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/references/contries.xhtml"/>
                                 <p:menuitem value="Currencies" 
-                                            class="#{view.viewId == '/protected/references/currencies.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/references/currencies.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/references/currencies.xhtml"/>
                                 <p:menuitem value="Segments of Clients" 
-                                            class="#{view.viewId == '/protected/references/segments_of_clients.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/references/segments_of_clients.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/references/segments_of_clients.xhtml"/>
                                 <p:menuitem value="Latters"
-                                            class="#{view.viewId == '/protected/references/latters.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/references/latters.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/references/latters.xhtml"/>
                                 <p:menuitem value="SMS text" 
-                                            class="#{view.viewId == '/protected/references/sms_text.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/references/sms_text.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/references/sms_text.xhtml"/>
                                 <p:menuitem value="SMS fields" 
-                                            class="#{view.viewId == '/protected/references/sms_fields.xhtml' ? 'menu_active_item' : ''}"
+                                            styleClass="#{view.viewId == '/protected/references/sms_fields.xhtml' ? 'menu_active_item' : ''}"
                                             url="/protected/references/sms_fields.xhtml"/>
                             </p:submenu>
                         </p:panelMenu>
@@ -111,7 +111,7 @@
         <div>
             <h:form id="topForm">
                 <p:dialog id="dialog" 
-                          class="txt-algn-lft"
+                          styleClass="txt-algn-lft"
                           header="Редактирование пользователя" 
                           showEffect="fade" 
                           widgetVar="aboutAppDialog" 
