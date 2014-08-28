@@ -27,7 +27,7 @@ input.ui-state-default:focus,
     border: 1px solid rgba(0, 0, 0, .3);
     box-shadow: 0 0 8px rgba(249, 243, 112, .1);
     color: #313131;
-    font-weight: bold;
+    _font-weight: bold;
 }
 
 .rf-button-min {

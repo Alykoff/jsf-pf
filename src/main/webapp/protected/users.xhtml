@@ -99,7 +99,8 @@
                                              styleClass="rf-button"
                                              validateClient="true"
                                              actionListener="#{usersController.saveUser()}"
-                                             onsuccess="PF('userDialog').hide();"
+                                             onsuccess="PF('userDialog')//.hide();"
+                                             ajax="true"
                                              process="powervalue"
                                              update="grid">
                             </p:commandButton>
