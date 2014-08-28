@@ -41,7 +41,7 @@
 
             <!-- Модальное окно редактирования пользователя -->
             <h:form id="form">
-                <p:growl id="growlUser" autoUpdate="true"/>
+                <p:growl id="growlUser" autoUpdate="true" life="6000"/>
                 <p:dialog id="idUserDialog" 
                           header="Редактирование пользователя" 
                           showEffect="fade" 
@@ -86,7 +86,6 @@
                             <p:inputText id="powervalue" 
                                          value="#{usersController.selectedUser.powerValue}" 
                                          required="true" 
-                                         binding="#{input1}"
                                          validatorMessage="Неверное значение силы" >
                                 <f:validateLongRange minimum="1" maximum="99" />
                             </p:inputText>
@@ -114,7 +113,7 @@
                                         styleClass="rf-button"
                                         oncomplete="handleSubmitRequest(xhr, status, args, 'idUserDialog','form');" 
                                         actionListener="#{usersController.saveUser()}"
-                                        update=":tableForm:userTable,:form:growlUser">
+                                        update=":tableForm:userTable,:form:growlUser,:form:userPanel">
                             </p:commandButton>
                         </div>
                         

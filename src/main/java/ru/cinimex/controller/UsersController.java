@@ -31,14 +31,13 @@ public class UsersController implements Serializable {
     public List<Users> users() {
         return usersManager.getAll();
     }
-
+    
     public void saveUser() {
         if (selectedUser == null) {
             return;
         }
-        
-        
         System.out.println("Сохраненно!!! " + selectedUser);
+        usersManager.save(selectedUser);
     }
     
     public Users getSelectedUser() {

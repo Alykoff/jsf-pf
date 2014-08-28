@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import ru.cinimex.model.Users;
 
 /**
@@ -32,24 +36,32 @@ public class UsersManagerImpl implements Serializable {
             new Users(16L, "name", "serch", "mosckov", "piter", 10, false)
         };
         users = usersLocal;
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("monogoNoDB");
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        for (Users user : usersLocal) {
-//            em.persist(null);
-//        }
-//        tx.commit();
-//        em.close();
-//        emf.close();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pftestdb");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        for (Users user : usersLocal) {
+            em.persist(user);
+        }
+        tx.commit();
+        em.close();
+        emf.close();
     }
 
     public List<Users> getAll() {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("monogoNoDB");
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction tx = em.getTransaction();
-//        return em.createNamedQuery("findAll", Users.class).getResultList();
-        return Arrays.asList(users);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pftestdb");
+        EntityManager em = emf.createEntityManager();
+        return em.createNamedQuery("findAll", Users.class).getResultList();
     }
-
+    
+    public void save(Users user) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pftestdb");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(user);
+        tx.commit();
+        em.close();
+        emf.close();
+    }
 }

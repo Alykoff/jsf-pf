@@ -13,16 +13,29 @@
     </h:head>
     <h:body>
         <h:form prependId="false" id="loginForm" style="margin:0 auto; width: 500px;">
-            <p:growl id="growl" sticky="true" showDetail="true"/>
-            <p:panel header="Login form" style="margin:0 auto; width: 500px;">
+            <p:growl id="growl" 
+                     sticky="true" 
+                     showDetail="true"/>
+            
+            <p:panel header="Login form" 
+                     style="margin:0 auto; width: 500px;">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Login: " />
-                    <p:inputText id="j_username" required="true" label="login"/>
+                    <p:inputText id="j_username" 
+                                 required="true" 
+                                 label="login"/>
 
                     <h:outputText value="Password: " />
-                    <p:password id="j_password" required="true" label="password"/>
-                    <h:commandButton class="rf-button" type="submit" value="Submit" id="login" action="#{authenticationBean.doLogin()}" />
+                    <p:password id="j_password" 
+                                required="true" 
+                                label="password"/>
+                    
+                    <h:commandButton class="rf-button" 
+                                type="submit" 
+                                value="Submit" 
+                                id="login" 
+                                action="#{authenticationBean.doLogin()}" />
                 </h:panelGrid>
             </p:panel>
         </h:form>

@@ -142,3 +142,23 @@ input.ui-state-default:focus,
 .menu_active_item {
     background-color: rgb(255, 252, 190);
 }
+
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight {
+    background: rgba(255, 252, 190, .9);
+    border: 1px solid #666666;
+    color: black;
+    text-shadow: none !important;
+}
+
+.ui-messages-error, 
+.ui-message-error {
+    color: rgb(185, 74, 72);
+    border-color: rgb(242, 231, 232) !important;
+    background-color: rgb(248, 243, 243) !important;
+}
+
+.ui-state-highlight .ui-icon {
+    background-image: url('../images/ui-icons_222222_256x240.png.xhtml') !important;
+}

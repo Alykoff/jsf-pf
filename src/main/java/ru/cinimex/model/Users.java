@@ -1,12 +1,15 @@
 package ru.cinimex.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -14,18 +17,25 @@ import javax.validation.constraints.NotNull;
  * @author galykov
  */
 @Entity
+@Table(name = "users")
 @NamedQueries({
     @NamedQuery(name = "findAll", query = "select u from Users u")
 })
 public class Users implements Serializable {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Column(name = "FIRST_NAME")
     private String firstName;
+    @Column(name = "SECOND_NAME")
     private String secondName;
+    @Column(name = "FROM_CITY")
     private String fromCity;
+    @Column(name = "LIVING_CITY")
     private String livingCity;
+    @Column(name = "POWER_VALUE")
     private Integer powerValue;
+    @Column(name = "IS_ACTIVE")
     private Boolean isActive;
 
     public Users() {

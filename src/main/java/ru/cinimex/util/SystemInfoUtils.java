@@ -8,7 +8,9 @@ package ru.cinimex.util;
 
 import java.io.Serializable;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -22,14 +24,15 @@ public class SystemInfoUtils implements Serializable {
     }
     
     public String getRootUrl() {
-        return "http://localhost:8080/pf-tst2/";
+        HttpServletRequest request = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.getContextPath();
     }
 
     public String getEnviromentInfo() {
         return System.getProperty("java.version") 
                 + "\n" + System.getProperty("java.vendor")
                 + ";\r\n" + "Tomcat 7.0.55;"
-                + "\r\n" + "JSF 2.2;"
+                + "\r\n" + "JSF 2.2;" 
                 + "\r\n" + "PrimeFaces 5.0;"
                 + "\r\n" + "Spring Security 3.2.4.RELEASE";
     }
