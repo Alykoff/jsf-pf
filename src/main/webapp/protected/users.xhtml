@@ -10,8 +10,8 @@
         </ui:define>
 
         <ui:define name="content">
-            <h:form id="form">
-                <p:dataTable var="user" value="#{usersController.users()}">
+            <h:form id="tableForm">
+                <p:dataTable id="userTable" var="user" value="#{usersController.users()}">
                     <p:column headerText="Firstname">
                         <h:outputText value="#{user.firstName}" />
                     </p:column>
@@ -37,8 +37,12 @@
                         </p:commandLink>
                     </p:column>
                 </p:dataTable>
-                <!-- Модальное окно редактирования пользователя -->
-                <p:dialog id="dialog" 
+            </h:form>
+
+            <!-- Модальное окно редактирования пользователя -->
+            <h:form id="form">
+                <p:growl id="growlUser" autoUpdate="true"/>
+                <p:dialog id="idUserDialog" 
                           header="Редактирование пользователя" 
                           showEffect="fade" 
                           widgetVar="userDialog" 
@@ -47,70 +51,92 @@
                           closable="false">
                     <p:outputPanel id="userPanel">
                         <h:panelGrid id="grid" 
-                                     width="600" 
-                                     columns="3" 
-                                     cellpadding="5" 
-                                     columnClasses="width_150px,width_150px,width_350px" 
-                                     rendered="#{not empty usersController.selectedUser}">
+                                width="600" 
+                                columns="3" 
+                                cellpadding="5" 
+                                columnClasses="width_150px,width_150px,width_350px" 
+                                rendered="#{not empty usersController.selectedUser}">
 
                             <h:outputLabel for="id" value="id: " />
-                            <h:outputText id="id" value="#{usersController.selectedUser.id}" />
+                            <h:outputText id="id" 
+                                          value="#{usersController.selectedUser.id}" />
                             <p:message for="id" />
 
                             <h:outputLabel for="firstname" value="first name: " />
-                            <p:inputText id="firstname" value="#{usersController.selectedUser.firstName}" />
+                            <p:inputText id="firstname" 
+                                         value="#{usersController.selectedUser.firstName}" />
                             <p:message for="firstname" />
 
                             <h:outputLabel for="secondname" value="second name: " />
-                            <p:inputText id="secondname" value="#{usersController.selectedUser.secondName}" />
+                            <p:inputText id="secondname" 
+                                         value="#{usersController.selectedUser.secondName}" />
                             <p:message for="secondname" />
 
                             <h:outputLabel for="livingcity" value="living city: " />
-                            <p:inputText id="livingcity" value="#{usersController.selectedUser.livingCity}" />
+                            <p:inputText id="livingcity" 
+                                         value="#{usersController.selectedUser.livingCity}" />
                             <p:message for="livingcity" />
 
                             <h:outputLabel for="fromcity" value="from city: " />
-                            <p:inputText id="fromcity" value="#{usersController.selectedUser.fromCity}" />
+                            <p:inputText id="fromcity" 
+                                         value="#{usersController.selectedUser.fromCity}" />
                             <p:message for="fromcity" />
 
                             <h:outputLabel for="powervalue" value="power value: " />
-                            <p:inputText id="powervalue" value="#{usersController.selectedUser.powerValue}" required="true" validatorMessage="Неверное значение силы" >
+                            <p:inputText id="powervalue" 
+                                         value="#{usersController.selectedUser.powerValue}" 
+                                         required="true" 
+                                         binding="#{input1}"
+                                         validatorMessage="Неверное значение силы" >
                                 <f:validateLongRange minimum="1" maximum="99" />
                             </p:inputText>
                             <p:message for="powervalue" />
 
                             <h:outputLabel for="isactive" value="is active: " />
-                            <p:selectBooleanCheckbox id="isactive" value="#{usersController.selectedUser.isActive}" />
+                            <p:selectBooleanCheckbox id="isactive" 
+                                         value="#{usersController.selectedUser.isActive}" />
                             <p:message for="isactive" />
 
                         </h:panelGrid>
+                        
                         <div class="mrgn-bttm-15px mrgn-tp-15px">
                             <p:commandButton value="Выход" 
-                                             styleClass="rf-button mrgn-rght-15px"
-                                             onclick="PF('userDialog').hide(); console.log('hello');" 
-                                             oncomplete="PF('userDialog').hide();console.log('hello');"
-                                             update=":form:dialog" 
-                                             validateClient="true"
-                                             process="@this" 
-                                             immediate="true">
-                                <p:resetInput target="form:dialog"/>
+                                        styleClass="rf-button mrgn-rght-15px"
+                                        oncomplete="PF('userDialog').hide();"
+                                        update=":form:idUserDialog" 
+                                        validateClient="true"
+                                        process="@this" 
+                                        immediate="true">
+                                <p:resetInput target="form:idUserDialog"/>
                             </p:commandButton>
-                            <p:commandButton value="Сохранить" 
-                                             styleClass="rf-button"
-                                             validateClient="true"
-                                             actionListener="#{usersController.saveUser()}"
-                                             onsuccess="PF('userDialog')//.hide();"
-                                             ajax="true"
-                                             process="powervalue"
-                                             update="grid">
+                            <p:commandButton id="vaa"
+                                        value="Сохранить" 
+                                        styleClass="rf-button"
+                                        oncomplete="handleSubmitRequest(xhr, status, args, 'idUserDialog','form');" 
+                                        actionListener="#{usersController.saveUser()}"
+                                        update=":tableForm:userTable,:form:growlUser">
                             </p:commandButton>
-<!--                            oncomplete="if(false) {/*console.log('#{!facesContext.validationFailed}');PF('userDialog').hide();*/};"
-                                             onclick="console.log('hello2');"-->
-                                             
                         </div>
+                        
                     </p:outputPanel>
                 </p:dialog>
             </h:form>
+            <script type="text/javascript">
+                function handleSubmitRequest(xhr, status, args, dialogName, formName) {
+                    dialog = jQuery('#' + dialogName);
+                    if (args.validationFailed) {
+                        dialog.effect("shake", {times: 3}, 100);
+                    } else {
+                        clearForm(formName);
+                        PF('userDialog').hide();
+                    }
+                }
+                function clearForm(formName) {
+                    jQuery('#' + formName).each(function() {
+                        this.reset();
+                    });
+                }
+            </script> 
         </ui:define>
     </ui:composition>
 </html>

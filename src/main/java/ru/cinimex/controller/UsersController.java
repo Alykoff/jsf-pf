@@ -1,13 +1,12 @@
 package ru.cinimex.controller;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import ru.cinimex.manager.UsersManagerImpl;
 import ru.cinimex.model.Users;
 
@@ -34,7 +33,12 @@ public class UsersController implements Serializable {
     }
 
     public void saveUser() {
-        System.out.println("Сохраненно!!!");
+        if (selectedUser == null) {
+            return;
+        }
+        
+        
+        System.out.println("Сохраненно!!! " + selectedUser);
     }
     
     public Users getSelectedUser() {
