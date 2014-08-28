@@ -162,3 +162,7 @@ input.ui-state-default:focus,
 .ui-state-highlight .ui-icon {
     background-image: url('../images/ui-icons_222222_256x240.png.xhtml') !important;
 }
+
+.dspl-inl-bl {
+    display: inline-block !important;
+}

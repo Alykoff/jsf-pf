@@ -22,7 +22,7 @@ public class UsersController implements Serializable {
     protected UsersManagerImpl usersManager;
     
     private Users selectedUser;
-    
+    private Boolean edit = false;
 //    @PostConstruct
 //    public void init() {
 //        System.out.println("Post contruct");
@@ -48,6 +48,14 @@ public class UsersController implements Serializable {
     public void setSelectedUser(Users selectedUser) {
         System.out.println("set selectedUser: " + selectedUser);
         this.selectedUser = selectedUser;
+    }
+    
+    public void setEdit(Boolean isEdit) {
+        this.edit = isEdit;
+    }
+    
+    public Boolean getEdit() {
+        return this.edit;
     }
     
 }

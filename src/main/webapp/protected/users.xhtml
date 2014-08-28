@@ -28,26 +28,36 @@
                         <h:outputText value="#{user.isActive ? 'да' : 'нет'}" />
                     </p:column>
 
-                    <p:column style="width:24px">
+                    <p:column style="width:100px">
                         <p:commandLink update=":form:userPanel" 
                                        oncomplete="PF('userDialog').show()" 
-                                       title="View Detail" 
-                                       styleClass="ui-icon ui-icon-search">
+                                       title="Просмотр" 
+                                       styleClass="ui-icon ui-icon-search dspl-inl-bl">
                             <f:setPropertyActionListener value="#{user}" target="#{usersController.selectedUser}" />
+                            <f:setPropertyActionListener value="#{false}" target="#{usersController.edit}" />
+                        </p:commandLink>
+                        
+                        <p:commandLink update=":form:userPanel" 
+                                       oncomplete="PF('userDialog').show()" 
+                                       title="Редактирование" 
+                                       styleClass="ui-icon ui-icon-pencil dspl-inl-bl">
+                            <f:setPropertyActionListener value="#{user}" target="#{usersController.selectedUser}" />
+                            <f:setPropertyActionListener value="#{true}" target="#{usersController.edit}" />
                         </p:commandLink>
                     </p:column>
                 </p:dataTable>
             </h:form>
-
+            
             <!-- Модальное окно редактирования пользователя -->
             <h:form id="form">
                 <p:growl id="growlUser" autoUpdate="true" life="6000"/>
                 <p:dialog id="idUserDialog" 
-                          header="Редактирование пользователя" 
+                          header="#{usersControllers.edit ? 'Редактирование пользователя' : 'Просмотр пользователя'}" 
                           showEffect="fade" 
                           widgetVar="userDialog" 
                           modal="true" 
                           resizable="false"
+                          dynamic="true"
                           closable="false">
                     <p:outputPanel id="userPanel">
                         <h:panelGrid id="grid" 
@@ -55,45 +65,51 @@
                                 columns="3" 
                                 cellpadding="5" 
                                 columnClasses="width_150px,width_150px,width_350px" 
-                                rendered="#{not empty usersController.selectedUser}">
+                                rendered="#{not empty usersController.selectedUser or not usersController.edit}">
 
                             <h:outputLabel for="id" value="id: " />
                             <h:outputText id="id" 
-                                          value="#{usersController.selectedUser.id}" />
+                                          value="#{usersController.selectedUser.id}"/>
                             <p:message for="id" />
 
                             <h:outputLabel for="firstname" value="first name: " />
                             <p:inputText id="firstname" 
-                                         value="#{usersController.selectedUser.firstName}" />
+                                         value="#{usersController.selectedUser.firstName}" 
+                                         disabled="#{!usersController.edit}" />
                             <p:message for="firstname" />
 
                             <h:outputLabel for="secondname" value="second name: " />
                             <p:inputText id="secondname" 
-                                         value="#{usersController.selectedUser.secondName}" />
+                                         value="#{usersController.selectedUser.secondName}" 
+                                         disabled="#{!usersController.edit}" />
                             <p:message for="secondname" />
 
                             <h:outputLabel for="livingcity" value="living city: " />
                             <p:inputText id="livingcity" 
-                                         value="#{usersController.selectedUser.livingCity}" />
+                                         value="#{usersController.selectedUser.livingCity}" 
+                                         disabled="#{!usersController.edit}" />
                             <p:message for="livingcity" />
 
                             <h:outputLabel for="fromcity" value="from city: " />
                             <p:inputText id="fromcity" 
-                                         value="#{usersController.selectedUser.fromCity}" />
+                                         value="#{usersController.selectedUser.fromCity}" 
+                                         disabled="#{!usersController.edit}" />
                             <p:message for="fromcity" />
 
                             <h:outputLabel for="powervalue" value="power value: " />
                             <p:inputText id="powervalue" 
                                          value="#{usersController.selectedUser.powerValue}" 
                                          required="true" 
-                                         validatorMessage="Неверное значение силы" >
+                                         validatorMessage="Неверное значение силы" 
+                                         disabled="#{!usersController.edit}" >
                                 <f:validateLongRange minimum="1" maximum="99" />
                             </p:inputText>
                             <p:message for="powervalue" />
 
                             <h:outputLabel for="isactive" value="is active: " />
                             <p:selectBooleanCheckbox id="isactive" 
-                                         value="#{usersController.selectedUser.isActive}" />
+                                         value="#{usersController.selectedUser.isActive}" 
+                                         disabled="#{!usersController.edit}" />
                             <p:message for="isactive" />
 
                         </h:panelGrid>
@@ -108,8 +124,8 @@
                                         immediate="true">
                                 <p:resetInput target="form:idUserDialog"/>
                             </p:commandButton>
-                            <p:commandButton id="vaa"
-                                        value="Сохранить" 
+                            <p:commandButton value="Сохранить" 
+                                        rendered="#{usersController.edit}"
                                         styleClass="rf-button"
                                         oncomplete="handleSubmitRequest(xhr, status, args, 'idUserDialog','form');" 
                                         actionListener="#{usersController.saveUser()}"
