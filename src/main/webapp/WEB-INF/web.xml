@@ -3,56 +3,38 @@
          xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    
     <context-param>
         <param-name>javax.faces.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/faces-config.xml</param-value>
     </context-param>
-    <!--context-param>
-            <param-name>primefaces.THEME</param-name>  
-            <param-value>raiff</param-value>  
-    </context-param-->
+    
     <context-param>
         <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
         <param-value>true</param-value>
     </context-param>
-  <!--<context-param>
-        <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
-        <param-value>true</param-value>
-    </context-param>-->
-<!--    <context-param>
-        <description>
-            Defines which packages to scan for beans, separated by commas.
-            Useful for when using maven and jetty:run (version 6) or tomcat:run
-       </description>
-       <param-name>org.apache.myfaces.annotation.SCAN_PACKAGES</param-name>
-       <param-value>ru.cinimex</param-value>
-    </context-param>-->
-<!--    <context-param>
-        <param-name>javax.faces.WEBAPP_RESOURCES_DIRECTORY</param-name>
-        <param-value>/WEB-INF/resources</param-value>
-    </context-param>
-    -->
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!--servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping-->
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.faces</url-pattern>
@@ -65,54 +47,36 @@
         </cookie-config>
     </session-config>
     
-    <!--error-page>
-        <error-code>500</error-code>
-        <location>/error.xhtml</location>
-    </error-page>
-    <error-page>
-        <exception-type>java.lang.Throwable</exception-type>
-        <location>/error.xhtml</location>
-    </error-page-->
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    <!--url-pattern>index.xhtml</url-pattern-->
-<!--    <listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>-->
+    
     <listener>
         <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
     </listener>
-    <!-- ===================EE SECURITY==================== 
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>secured</web-resource-name>
-            <url-pattern>/secured/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>MANAGER</role-name>
-        </auth-constraint>
-    </security-constraint>
- 
-    <security-role>
-        <role-name>MANAGER</role-name>
-    </security-role>
-
-   <login-config>
-       <auth-method>BASIC</auth-method>
-   </login-config>
-    ====================================================== -->
-    <!-- ===================SPRING SECURITY==================== -->
-    <!--context-param>
-        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-        <param-value>/WEB-INF/spring-security.taglib.xml</param-value>
+    
+    <!-- ===================DB H2==================== -->
+    <context-param>
+        <param-name>db.url</param-name>
+        <param-value>jdbc:h2:~/test</param-value>
     </context-param>
     <context-param>
-        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-        <param-value>/WEB-INF/springsecurity.taglib.xml</param-value>
-    </context-param-->
+        <param-name>db.user</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>db.password</param-name>
+        <param-value></param-value>
+    </context-param>
+    <context-param>
+        <param-name>db.tcpServer</param-name>
+        <param-value>-tcpAllowOthers</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.h2.server.web.DbStarter</listener-class>
+    </listener>
+    <!-- ==================================================== -->
+    <!-- ===================SPRING SECURITY==================== -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring-security.xml</param-value>
@@ -135,10 +99,40 @@
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
     <!-- ==================================================== -->
-    
     <resource-env-ref>
         <description>Object factory for the CDI Bean Manager</description>
         <resource-env-ref-name>BeanManager</resource-env-ref-name>
         <resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
     </resource-env-ref>
+    <!-- ==================================================== -->
+     <!-- ========================Local theme==============================
+    <context-param>
+            <param-name>primefaces.THEME</param-name>  
+            <param-value>raiff</param-value>  
+    </context-param>
+    ======================================================================= -->    
+    <!-- ========================Errors pages==============================
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error.xhtml</location>
+    </error-page>
+    ======================================================================= -->
+    <!-- ========================From My Faces==============================
+    <context-param>
+        <description>
+            Defines which packages to scan for beans, separated by commas.
+            Useful for when using maven and jetty:run (version 6) or tomcat:run
+       </description>
+       <param-name>org.apache.myfaces.annotation.SCAN_PACKAGES</param-name>
+       <param-value>ru.cinimex</param-value>
+    </context-param>
+    
+    <listener>
+        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+    </listener>
+    ======================================================================= -->
 </web-app>

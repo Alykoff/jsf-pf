@@ -50,12 +50,13 @@
             <version>1.0.10</version>  
         </dependency>
 
-        <!-- Local theme -->
-<!--        <dependency>
+        <!-- Local theme
+        <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>raiff-theme</artifactId>
             <version>1.0.0</version>
-        </dependency>-->
+        </dependency>
+        -->
 
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -68,20 +69,6 @@
             <artifactId>jsf-impl</artifactId>
             <version>2.2.7</version>
         </dependency>
- 
-<!--        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-api</artifactId>
-            <version>2.2.4</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-impl</artifactId>
-            <version>2.2.4</version>
-            <scope>compile</scope>
-        </dependency>-->
         
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
@@ -130,24 +117,13 @@
             <artifactId>weld-spi</artifactId>
             <version>2.2.SP3</version>
         </dependency>
-        <!--        <dependency>
-            <groupId>org.jboss.weld</groupId>
-            <artifactId>weld-se</artifactId>
-            <version>1.0.1-Final</version>
-        </dependency>-->
 
-        <!--        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>3.0</version>
-        </dependency>-->
-        
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.1.1</version>
         </dependency>
-        
+
         <!-- ===================Spring======================== -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -174,65 +150,19 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
-        
-        <!--dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>facelets-taglib</artifactId>
-            <version>0.2_jsf-2.0-spring-3</version>
-        </dependency-->
-        <!--dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>3.2.4.RELEASE</version>
-        </dependency-->
-        <!--dependency>
-            <groupId>org.springframework.webflow</groupId>
-            <artifactId>org.springframework.faces</artifactId>
-            <version>2.0.5.RELEASE</version>
-        </dependency-->
 
-        <!-- ===================JPA 2======================== -->
+        <!-- ===================DB & JPA 2======================== -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.181</version>
         </dependency>
         
-<!--        <dependency>  
-            <groupId>org.hibernate</groupId>  
-            <artifactId>hibernate-core</artifactId>  
-            <version>4.3.6.Final</version>  
-        </dependency>
-        
-        <dependency>
-            <groupId>org.hibernate</groupId>  
-            <artifactId>hibernate-entitymanager</artifactId>  
-            <version>4.3.6.Final</version>  
-        </dependency>  
-        
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.1.2.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
-            <version>1.0.1.Final</version>
-        </dependency>-->
-
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>2.5.0</version>
         </dependency>
-
-<!--        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>2.5.0-M10</version>
-        </dependency>-->
         
         <dependency> 
             <groupId>javax</groupId> 
@@ -263,7 +193,7 @@
                 </configuration>
             </plugin>
             
-            <plugin>
+<!--            <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
@@ -281,25 +211,55 @@
                     </filesets>
                 </configuration>
             </plugin>
-            
-            <!--            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.0.2</version>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
-                    <outputDirectory>C:\developer\apache-tomcat-6.0.32\webapps</outputDirectory>
-                    <webResources>
-                        <resource>
-                            <directory>${basedir}/src/main/config/${environment}</directory>
-                            <filtering>true</filtering>
-                            <targetPath>.</targetPath>
-                            <includes>
-                                <include>**/*.*</include>
-                            </includes>
-                        </resource>
-                    </webResources>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>tomcatserver</server>
+                    <path>/pf-tst2</path>
+                    <username>tomcat</username>
+                    <password>tomcat</password>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                        <version>1.7.5</version>
+                    </dependency>
+                </dependencies>
             </plugin>-->
+
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>tomcat-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<url>http://localhost:8080/manager/text</url>-->
+                    <!--<server>apache-tomcat-7.0.55</server>-->
+                    <!--<path>/pf-tst2</path>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<version>2.0.2</version>-->
+                <!--<configuration>-->
+                    <!--<outputDirectory>C:\developer\apache-tomcat-7.0.55\webapps</outputDirectory>-->
+                    <!--<webResources>-->
+                        <!--<resource>-->
+                            <!--<directory>${basedir}/src/main/webapp/${environment}</directory>-->
+                            <!--<filtering>true</filtering>-->
+                            <!--<targetPath>.</targetPath>-->
+                            <!--<includes>-->
+                                <!--<include>**/*.*</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    <!--</webResources>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <!--            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.5</version>
