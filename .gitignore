@@ -6,3 +6,7 @@ pom.xml.asc
 *.class
 faces-config.NavData
 nb-configuration.xml
+.idea
+.project
+.classpath
+pf-tst2.iml
