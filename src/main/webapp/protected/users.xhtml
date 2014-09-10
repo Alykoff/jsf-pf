@@ -10,21 +10,33 @@
         </ui:define>
 
         <ui:define name="content">
+            <f:view>
             <h:form id="tableForm">
-                <p:dataTable id="userTable" var="user" value="#{usersController.users()}">
-                    <p:column headerText="Firstname">
+                
+                <p:accordionPanel styleClass="mrgn-bttm-15px" activeIndex="null">
+                    <p:tab title="Замечания">
+                        <h:panelGrid columns="1" cellpadding="10">
+                            <h:outputText
+                                value="Стандартные средства PrimeFaces реализуют сортировку таблицы на стороне сервера, не на стороне DB.
+                                Когда пользователь нажимает кнопку сортировки - данные на клиенте не синронизируются с данными в DB :( " />
+                        </h:panelGrid>
+                    </p:tab>
+                </p:accordionPanel>
+                <f:event type="postAddToView" listener="#{usersController.updateAllUsers}" />
+                <p:dataTable id="userTable" var="user" value="#{usersController.allUsers}" sortMode="multiple">
+                    <p:column headerText="Firstname" sortBy="#{user.firstName}">
                         <h:outputText value="#{user.firstName}" />
                     </p:column>
 
-                    <p:column headerText="Secondname">
+                    <p:column headerText="Secondname" sortBy="#{user.secondName}">
                         <h:outputText value="#{user.secondName}" />
                     </p:column>
 
-                    <p:column headerText="Living city">
+                    <p:column headerText="Living city" sortBy="#{user.livingCity}">
                         <h:outputText value="#{user.livingCity}" />
                     </p:column>
 
-                    <p:column headerText="Is active">
+                    <p:column headerText="Is active" sortBy="#{user.isActive}">
                         <h:outputText value="#{user.isActive ? 'да' : 'нет'}" />
                     </p:column>
 
@@ -36,7 +48,7 @@
                             <f:setPropertyActionListener value="#{user}" target="#{usersController.selectedUser}" />
                             <f:setPropertyActionListener value="#{false}" target="#{usersController.edit}" />
                         </p:commandLink>
-                        
+
                         <p:commandLink update=":form:userPanel" 
                                        oncomplete="PF('userDialog').show()" 
                                        title="Редактирование" 
@@ -47,7 +59,8 @@
                     </p:column>
                 </p:dataTable>
             </h:form>
-            
+            </f:view>
+
             <!-- Модальное окно редактирования пользователя -->
             <h:form id="form">
                 <p:growl id="growlUser" autoUpdate="true" life="6000"/>
@@ -61,11 +74,11 @@
                           closable="false">
                     <p:outputPanel id="userPanel">
                         <h:panelGrid id="grid" 
-                                width="600" 
-                                columns="3" 
-                                cellpadding="5" 
-                                columnClasses="width_150px,width_150px,width_350px" 
-                                rendered="#{not empty usersController.selectedUser or not usersController.edit}">
+                                     width="600" 
+                                     columns="3" 
+                                     cellpadding="5" 
+                                     columnClasses="width_150px,width_150px,width_350px" 
+                                     rendered="#{not empty usersController.selectedUser or not usersController.edit}">
 
                             <h:outputLabel for="id" value="id: " />
                             <h:outputText id="id" 
@@ -108,31 +121,31 @@
 
                             <h:outputLabel for="isactive" value="is active: " />
                             <p:selectBooleanCheckbox id="isactive" 
-                                         value="#{usersController.selectedUser.isActive}" 
-                                         disabled="#{!usersController.edit}" />
+                                                     value="#{usersController.selectedUser.isActive}" 
+                                                     disabled="#{!usersController.edit}" />
                             <p:message for="isactive" />
 
                         </h:panelGrid>
-                        
+
                         <div class="mrgn-bttm-15px mrgn-tp-15px">
                             <p:commandButton value="Выход" 
-                                        styleClass="rf-button mrgn-rght-15px"
-                                        oncomplete="PF('userDialog').hide();"
-                                        update=":form:idUserDialog" 
-                                        validateClient="true"
-                                        process="@this" 
-                                        immediate="true">
+                                             styleClass="rf-button mrgn-rght-15px"
+                                             oncomplete="PF('userDialog').hide();"
+                                             update=":form:idUserDialog" 
+                                             validateClient="true"
+                                             process="@this" 
+                                             immediate="true">
                                 <p:resetInput target="form:idUserDialog"/>
                             </p:commandButton>
                             <p:commandButton value="Сохранить" 
-                                        rendered="#{usersController.edit}"
-                                        styleClass="rf-button"
-                                        oncomplete="handleSubmitRequest(xhr, status, args, 'idUserDialog','form');" 
-                                        actionListener="#{usersController.saveUser()}"
-                                        update=":tableForm:userTable,:form:growlUser,:form:userPanel">
+                                             rendered="#{usersController.edit}"
+                                             styleClass="rf-button"
+                                             oncomplete="handleSubmitRequest(xhr, status, args, 'idUserDialog','form');" 
+                                             actionListener="#{usersController.saveUser()}"
+                                             update=":tableForm:userTable,:form:growlUser,:form:userPanel">
                             </p:commandButton>
                         </div>
-                        
+
                     </p:outputPanel>
                 </p:dialog>
             </h:form>

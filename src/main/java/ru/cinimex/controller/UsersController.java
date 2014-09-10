@@ -22,14 +22,26 @@ public class UsersController implements Serializable {
     protected UsersManagerImpl usersManager;
     
     private Users selectedUser;
+    private List<Users> allUsers;
     private Boolean edit = false;
 //    @PostConstruct
 //    public void init() {
 //        System.out.println("Post contruct");
 //    }
     
-    public List<Users> users() {
-        return usersManager.getAll();
+    public List<Users> getAllUsers() {
+        if (allUsers == null) {
+            this.allUsers = usersManager.getAll();
+        }
+        return allUsers;
+    }
+    
+    public void setAllUsers(List<Users> all) {
+        this.allUsers = all;
+    }
+    
+    public void updateAllUsers() {
+        this.allUsers = usersManager.getAll();
     }
     
     public void saveUser() {

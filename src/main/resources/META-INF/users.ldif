@@ -1,0 +1,42 @@
+dn: dc=cinimex,dc=ru
+dc: cinimex
+description: Синимекс-Информатика
+objectclass: dcObject
+objectclass: organization
+
+dn: ou=people, dc=cinimex,dc=ru
+description: Все люди в организации
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: ou=groups, dc=cinimex,dc=ru
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: uid=admin,ou=people,dc=cinimex,dc=ru
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Vanya
+sn: Ivanov
+uid: admin
+userpassword: admin
+
+dn: uid=uper,ou=people,dc=cinimex,dc=ru
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Uper
+sn: Lavia
+uid: uper
+userpassword: uper
+
+dn: cn=admin,ou=groups,dc=cinimex,dc=ru
+objectclass: top
+objectclass: groupOfNames
+cn: ADMIN
+memeber: uid=admin,ou=people,dc=cinimex,dc=ru

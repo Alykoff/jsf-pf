@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" href="#{request.contextPath}/resources/img/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="#{request.contextPath}/resources/img/favicon.ico" type="image/x-icon" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+    </h:head>
+    <h:body>
+        <h:form prependId="false" id="loginForm" style="margin:0 auto; width: 500px;">
+            <p:growl id="growl" 
+                     sticky="true" 
+                     showDetail="true"/>
+            
+            <p:panel header="Login form" 
+                     style="margin:0 auto; width: 500px;">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Login: " />
+                    <p:inputText id="j_username" 
+                                 required="true" 
+                                 label="login"/>
+
+                    <h:outputText value="Password: " />
+                    <p:password id="j_password" 
+                                required="true" 
+                                label="password"/>
+                    
+                    <h:commandButton class="rf-button" 
+                                type="submit" 
+                                value="Submit" 
+                                id="login" 
+                                action="#{authenticationBean.doLogin()}" />
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

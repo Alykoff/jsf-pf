@@ -10,6 +10,8 @@
     <packaging>war</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-version>3.2.4.RELEASE</spring-version>
+        <slf4j-version>1.5.5</slf4j-version>
     </properties>
     
     <repositories>
@@ -34,7 +36,32 @@
             <layout>default</layout>
             <name>Repository for library EclipseLink (JPA 2.x)</name>
         </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+              <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <name>Maven Plugin Repository</name>
+          <url>http://repo1.maven.org/maven2</url>
+          <layout>default</layout>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    
     
     <dependencies>
         
@@ -128,27 +155,116 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>3.2.4.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
         
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>3.2.4.RELEASE</version>
+            <version>${spring-version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-security-core</artifactId>
+                    <groupId>org.springframework.security</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>3.2.4.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
         
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
             <version>3.2.4.RELEASE</version>
             <type>jar</type>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-security-core</artifactId>
+                    <groupId>org.springframework.security</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+        
+<!--        <dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+            <version>2.0.2.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.data</groupId>
+                    <artifactId>spring-data-commons</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+        
+<!--        <dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core-tiger</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>-->
+        
+        <dependency>
+            <groupId>org.springframework.ldap</groupId>
+            <artifactId>spring-ldap-core</artifactId>
+            <version>2.0.2.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.data</groupId>
+                    <artifactId>spring-data-commons</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        
+        <!-- LDAP -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>1.9.0.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+<!--        <dependency>
+            <groupId>org.apache.directory.server</groupId>
+            <artifactId>apacheds-all</artifactId>
+            <version>1.5.5</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j-version}</version>
         </dependency>
 
         <!-- ===================DB & JPA 2======================== -->
@@ -233,32 +349,32 @@
             </plugin>-->
 
             <!--<plugin>-->
-                <!--<groupId>org.codehaus.mojo</groupId>-->
-                <!--<artifactId>tomcat-maven-plugin</artifactId>-->
-                <!--<configuration>-->
-                    <!--<url>http://localhost:8080/manager/text</url>-->
-                    <!--<server>apache-tomcat-7.0.55</server>-->
-                    <!--<path>/pf-tst2</path>-->
-                <!--</configuration>-->
+            <!--<groupId>org.codehaus.mojo</groupId>-->
+            <!--<artifactId>tomcat-maven-plugin</artifactId>-->
+            <!--<configuration>-->
+            <!--<url>http://localhost:8080/manager/text</url>-->
+            <!--<server>apache-tomcat-7.0.55</server>-->
+            <!--<path>/pf-tst2</path>-->
+            <!--</configuration>-->
             <!--</plugin>-->
 
             <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-war-plugin</artifactId>-->
-                <!--<version>2.0.2</version>-->
-                <!--<configuration>-->
-                    <!--<outputDirectory>C:\developer\apache-tomcat-7.0.55\webapps</outputDirectory>-->
-                    <!--<webResources>-->
-                        <!--<resource>-->
-                            <!--<directory>${basedir}/src/main/webapp/${environment}</directory>-->
-                            <!--<filtering>true</filtering>-->
-                            <!--<targetPath>.</targetPath>-->
-                            <!--<includes>-->
-                                <!--<include>**/*.*</include>-->
-                            <!--</includes>-->
-                        <!--</resource>-->
-                    <!--</webResources>-->
-                <!--</configuration>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-war-plugin</artifactId>-->
+            <!--<version>2.0.2</version>-->
+            <!--<configuration>-->
+            <!--<outputDirectory>C:\developer\apache-tomcat-7.0.55\webapps</outputDirectory>-->
+            <!--<webResources>-->
+            <!--<resource>-->
+            <!--<directory>${basedir}/src/main/webapp/${environment}</directory>-->
+            <!--<filtering>true</filtering>-->
+            <!--<targetPath>.</targetPath>-->
+            <!--<includes>-->
+            <!--<include>**/*.*</include>-->
+            <!--</includes>-->
+            <!--</resource>-->
+            <!--</webResources>-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <!--            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>

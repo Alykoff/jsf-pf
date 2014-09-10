@@ -11,8 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-
+import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
 
 /**
  *
@@ -26,6 +25,8 @@ public class AuthenticationBean implements Serializable {
         RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher("/j_spring_security_check");
         dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
         FacesContext.getCurrentInstance().responseComplete();
+//        LdapUserDetailsImpl user = (LdapUserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println(user);
         System.out.println("IN DOLOGIN");
         return null;
     }

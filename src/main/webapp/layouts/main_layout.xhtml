@@ -57,7 +57,8 @@
                                             styleClass="#{view.viewId == '/protected/index.xhtml' ? 'menu_active_item' : ''}" 
                                             url="/protected/index.xhtml"/>
                             </p:submenu>
-                            <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">
+<!--                            <p:submenu label="Administration" rendered="#{secUtil.isUserInRole('ROLE_ADMIN')}">-->
+                            <p:submenu label="Administration">
                                 <p:menuitem value="Users" 
                                             styleClass="#{view.viewId == '/protected/users.xhtml' ? 'menu_active_item' : ''}" 
                                             url="/protected/users.xhtml"/>
@@ -69,8 +70,7 @@
                                             url="/protected/permitions.xhtml"/>
                                 <p:menuitem value="Managers" 
                                             styleClass="#{view.viewId == '/protected/managers.xhtml' ? 'menu_active_item' : ''}"
-                                            url="/protected/managers.xhtml"
-                                            rendered="#{secUtil.isUserInRole('ROLE_MANAGER')}"/>
+                                            url="/protected/managers.xhtml"/>
                             </p:submenu>
                             <p:submenu label="References">
                                 <p:menuitem value="Contries" 
@@ -112,7 +112,7 @@
             <h:form id="topForm">
                 <p:dialog id="dialog" 
                           styleClass="txt-algn-lft"
-                          header="Редактирование пользователя" 
+                          header="О программе" 
                           showEffect="fade" 
                           widgetVar="aboutAppDialog" 
                           modal="true" 

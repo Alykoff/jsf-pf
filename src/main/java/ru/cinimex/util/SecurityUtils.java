@@ -5,6 +5,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 //import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
@@ -18,6 +20,7 @@ public class SecurityUtils implements Serializable {
         if (role == null) return false;
         System.out.println("isUserInRole");
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        System.out.println(user);
         HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
         return req.isUserInRole(role);
     }
