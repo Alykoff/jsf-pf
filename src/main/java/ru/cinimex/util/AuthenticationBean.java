@@ -10,8 +10,8 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
 
 /**
  *

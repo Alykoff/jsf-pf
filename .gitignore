@@ -1,6 +1,10 @@
 /target
 /classes
 /checkouts
+/src/main/resources/ldap-secret.properties
+/.gradle
+/gradle
+/build
 pom.xml.asc
 *.jar
 *.class
@@ -10,4 +14,3 @@ nb-configuration.xml
 .project
 .classpath
 pf-tst2.iml
-/src/main/resources/ldap-secret.properties
